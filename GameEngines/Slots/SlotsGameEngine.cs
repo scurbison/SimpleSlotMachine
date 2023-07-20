@@ -39,7 +39,7 @@ namespace GameEngines.Slots
             Environment.Exit(0);
         }
 
-        private bool IsValidDeposit(string depositEntered)
+        public bool IsValidDeposit(string depositEntered)
         {
             if (!decimal.TryParse(depositEntered, out decimal validDeposit)) 
                 return false;
