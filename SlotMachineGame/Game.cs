@@ -11,6 +11,7 @@ namespace SimpleSlotMachine
         internal void Begin()
         {
             DisplaySlotsWelcomeMessage();
+            _slotsGameEngine.StartGame();
         }
 
         private void DisplaySlotsWelcomeMessage()

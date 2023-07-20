@@ -4,9 +4,26 @@ namespace GameEngines.Slots
 {
     public class SlotsGameEngine : ISlotsGameEngine
     {
-        public void StartGame(decimal initialStake)
+        private decimal _deposit;
+
+        public void StartGame()
         {
-            Console.WriteLine("GamesEngineStarted");
+            Console.WriteLine("Welcome, Please specify how much you would like to deposit?");
+            var deposit = Console.ReadLine();
+            if (IsValidDeposit(deposit))
+            {
+
+            }
+        }
+
+        private bool IsValidDeposit(string depositEntered)
+        {
+            return false;
+        }
+
+        public void PlaceStake(decimal initialStake)
+        {
+            throw new NotImplementedException();
         }
     }
 }

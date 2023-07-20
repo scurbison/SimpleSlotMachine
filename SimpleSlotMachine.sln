@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSlotMachine", "SimpleSlotMachine.csproj", "{BE026A45-1851-411E-930D-D79235F7276E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSlotMachine", "SlotMachineGame\SimpleSlotMachine.csproj", "{BE026A45-1851-411E-930D-D79235F7276E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameEngines", "GameEngines\GameEngines.csproj", "{64FA4F02-FB39-41F4-88DF-6C631C60675B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTests", "GameTests\GameTests.csproj", "{2CBD0ABE-6553-4FE9-AD51-7A674693D1E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{64FA4F02-FB39-41F4-88DF-6C631C60675B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64FA4F02-FB39-41F4-88DF-6C631C60675B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64FA4F02-FB39-41F4-88DF-6C631C60675B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CBD0ABE-6553-4FE9-AD51-7A674693D1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CBD0ABE-6553-4FE9-AD51-7A674693D1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CBD0ABE-6553-4FE9-AD51-7A674693D1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CBD0ABE-6553-4FE9-AD51-7A674693D1E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

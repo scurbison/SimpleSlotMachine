@@ -2,6 +2,8 @@
 {
     public interface ISlotsGameEngine
     {
-        void StartGame(decimal initialStake);
+        void StartGame();
+
+        void PlaceStake(decimal initialStake);
     }
 }
