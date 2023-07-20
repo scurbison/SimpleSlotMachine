@@ -1,23 +1,25 @@
-﻿namespace SimpleSlotMachine;
+﻿using GameEngines.Interfaces;
+using GameEngines.Slots;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SimpleSlotMachine;
 
-class Program
+using IHost host = CreateHostBuilder(args).Build();
+using var scope = host.Services.CreateScope();
+var services = scope.ServiceProvider;
+        
+static IHostBuilder CreateHostBuilder(string[] strings) => 
+    Host.CreateDefaultBuilder().ConfigureServices((_, services) =>
+          {
+              services.AddSingleton<ISlotsGameEngine, SlotsGameEngine>();
+              services.AddSingleton<Game>();
+          });
+
+try
 {
-    static void Main(string[] args)
-    {
-        DisplaySlotsWelcomeMessage();
-    }
-
-    private static void DisplaySlotsWelcomeMessage()
-    {
-        Console.WriteLine(@"
-         $$$$$$\ $$\          $$\                    $$\      $$\                  $$\      $$\                   
-        $$  __$$\$$ |         $$ |                   $$$\    $$$ |                 $$ |     \__|                  
-        $$ /  \__$$ |$$$$$$\$$$$$$\   $$$$$$$\       $$$$\  $$$$ |$$$$$$\  $$$$$$$\$$$$$$$\ $$\$$$$$$$\  $$$$$$\  
-        \$$$$$$\ $$ $$  __$$\_$$  _| $$  _____|      $$\$$\$$ $$ |\____$$\$$  _____$$  __$$\$$ $$  __$$\$$  __$$\ 
-         \____$$\$$ $$ /  $$ |$$ |   \$$$$$$\        $$ \$$$  $$ |$$$$$$$ $$ /     $$ |  $$ $$ $$ |  $$ $$$$$$$$ |
-        $$\   $$ $$ $$ |  $$ |$$ |$$\ \____$$\       $$ |\$  /$$ $$  __$$ $$ |     $$ |  $$ $$ $$ |  $$ $$   ____|
-        \$$$$$$  $$ \$$$$$$  |\$$$$  $$$$$$$  |      $$ | \_/ $$ \$$$$$$$ \$$$$$$$\$$ |  $$ $$ $$ |  $$ \$$$$$$$\ 
-         \______/\__|\______/  \____/\_______/       \__|     \__|\_______|\_______\__|  \__\__\__|  \__|\_______|
-        ");
-    }
+    services.GetRequiredService<Game>().Begin();
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message);
 }
