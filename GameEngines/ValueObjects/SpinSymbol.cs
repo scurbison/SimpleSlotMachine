@@ -2,5 +2,5 @@
 
 namespace GameEngines.ValueObjects
 {
-    public record SpinSymbol(string Name, string Symbol, double Coefficient) : ISpinSymbol;
+    public record SpinSymbol(string Name, string Symbol, decimal Coefficient) : ISpinSymbol;
 }

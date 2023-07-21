@@ -4,6 +4,6 @@
     {
         string Name { get; init; }
         string Symbol { get; init;}
-        double Coefficient { get; init; }
+        decimal Coefficient { get; init; }
     }
 }

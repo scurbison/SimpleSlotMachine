@@ -26,7 +26,8 @@ namespace GameEngines.Slots
                 {
                     PlaceStake();
                     var game = _spinMechanic.Spin();
-                    var prizeAmount = _prizeGenerator.GeneratePrize(game);
+                    var prizeAmount = _prizeGenerator.GeneratePrize(game, CurrentStake);
+                    AddAndDisplayPrize(prizeAmount);
                     DisplayCurrentBalance();
                     Console.WriteLine();
                 }
@@ -84,12 +85,18 @@ namespace GameEngines.Slots
             if (!decimal.TryParse(stake, out decimal validStake))
                 return false;
 
-            if (validStake > Deposit)
+            if (validStake > 0 && validStake > Deposit)
                 return false;
 
             CurrentStake = Math.Round(validStake, 2);
             Deposit -= CurrentStake;
             return true;
+        }
+
+        private void AddAndDisplayPrize(decimal prizeAmount)
+        {
+            Console.WriteLine($"You have won: £{prizeAmount}");
+            Deposit += prizeAmount;
         }
 
         private void DisplayCurrentBalance() => Console.WriteLine($"Your current balance is £{Deposit}");
