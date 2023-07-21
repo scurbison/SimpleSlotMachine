@@ -8,6 +8,10 @@ namespace GameEngines.Slots
         public decimal Deposit { get; private set; }
         public decimal CurrentStake { get; private set; }
 
+        private readonly ISpinMechanic _spinMechanic;
+
+        public SlotsGameEngine(ISpinMechanic spinMechanic) => _spinMechanic = spinMechanic;
+
         public void StartGame()
         {
             var deposit = RequestAmount();
@@ -16,6 +20,7 @@ namespace GameEngines.Slots
                 while (Deposit > 0)
                 {
                     PlaceStake();
+                    _spinMechanic.Spin();
                 }
                 return;
             }
@@ -59,9 +64,10 @@ namespace GameEngines.Slots
             if (!ValidateAndStoreStake(stake))
             {
                 Console.WriteLine("The Steak amount you have entered is not valid.");
-                Console.Write($"please enter a valid amount which is less than your current balance: {Deposit}");
+                Console.WriteLine($"please enter a valid amount which is less than your current balance: {Deposit}");
                 PlaceStake();
             }
+            Console.WriteLine();
         }
 
         public bool ValidateAndStoreStake(string? stake)
@@ -72,7 +78,8 @@ namespace GameEngines.Slots
             if (validStake > Deposit)
                 return false;
 
-            CurrentStake = Math.Round(validStake, 2);;
+            CurrentStake = Math.Round(validStake, 2);
+            Deposit -= CurrentStake;
             return true;
         }
     }

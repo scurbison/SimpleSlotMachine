@@ -1,5 +1,6 @@
 ﻿using GameEngines.Interfaces;
 using GameEngines.Slots;
+using Moq;
 using Xunit;
 
 namespace GameTests
@@ -7,10 +8,12 @@ namespace GameTests
     public class GameEngineTests
     {
         private ISlotsGameEngine _gameEngine;
+        private Mock<ISpinMechanic> _mockSpinMechanic;
 
         public GameEngineTests()
         {
-            _gameEngine = new SlotsGameEngine();
+            _mockSpinMechanic = new Mock<ISpinMechanic>();
+            _gameEngine = new SlotsGameEngine(_mockSpinMechanic.Object);
         }
 
         [Theory]
@@ -74,6 +77,15 @@ namespace GameTests
             _gameEngine.ValidateAndStoreDeposit("100");
             var isValid = _gameEngine.ValidateAndStoreStake("200");
             Assert.False(isValid);
+        }
+
+        [Fact]
+        public void Storing_Valid_Stake_Should_Reduce_Deposit_By_Stake_Amount()
+        {
+            _gameEngine.ValidateAndStoreDeposit("10");
+            var isValid = _gameEngine.ValidateAndStoreStake("5");
+            Assert.True(isValid);
+            Assert.Equal(5, _gameEngine.Deposit);
         }
     }
 }

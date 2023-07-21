@@ -11,7 +11,8 @@ var services = scope.ServiceProvider;
 static IHostBuilder CreateHostBuilder(string[] strings) => 
     Host.CreateDefaultBuilder().ConfigureServices((_, services) =>
           {
-              services.AddSingleton<ISlotsGameEngine, SlotsGameEngine>();
+              services.AddTransient<ISlotsGameEngine, SlotsGameEngine>();
+              services.AddTransient<ISpinMechanic, SpinMechanic>();
               services.AddSingleton<Game>();
           });
 
