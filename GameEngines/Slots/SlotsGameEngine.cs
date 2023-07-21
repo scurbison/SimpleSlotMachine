@@ -5,14 +5,18 @@ namespace GameEngines.Slots
     public class SlotsGameEngine : ISlotsGameEngine
     {
         private const string AbandonGameKey = "q";
-        private decimal _deposit;
+        public decimal Deposit { get; private set; }
+        public decimal CurrentStake { get; private set; }
 
         public void StartGame()
         {
             var deposit = RequestAmount();
-            if (IsValidDeposit(deposit))
+            if (ValidateAndStoreDeposit(deposit))
             {
-                PlaceStake(0);
+                while (Deposit > 0)
+                {
+                    PlaceStake();
+                }
                 return;
             }
 
@@ -39,18 +43,37 @@ namespace GameEngines.Slots
             Environment.Exit(0);
         }
 
-        public bool IsValidDeposit(string depositEntered)
+        public bool ValidateAndStoreDeposit(string depositEntered)
         {
             if (!decimal.TryParse(depositEntered, out decimal validDeposit)) 
                 return false;
 
-            _deposit = validDeposit;
+            Deposit = Math.Round(validDeposit, 2);
             return true;
         }
 
-        public void PlaceStake(decimal initialStake)
+        public void PlaceStake()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("How much would you like to stake?");
+            var stake = Console.ReadLine();
+            if (!ValidateAndStoreStake(stake))
+            {
+                Console.WriteLine("The Steak amount you have entered is not valid.");
+                Console.Write($"please enter a valid amount which is less than your current balance: {Deposit}");
+                PlaceStake();
+            }
+        }
+
+        public bool ValidateAndStoreStake(string? stake)
+        {
+            if (!decimal.TryParse(stake, out decimal validStake))
+                return false;
+
+            if (validStake > Deposit)
+                return false;
+
+            CurrentStake = Math.Round(validStake, 2);;
+            return true;
         }
     }
 }

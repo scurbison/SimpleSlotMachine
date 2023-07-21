@@ -2,8 +2,13 @@
 {
     public interface ISlotsGameEngine
     {
+        decimal Deposit { get; }
+        decimal CurrentStake { get; }
+
         void StartGame();
 
-        void PlaceStake(decimal initialStake);
+        bool ValidateAndStoreDeposit(string? depositAmount);
+
+        bool ValidateAndStoreStake(string? stake);
     }
 }
