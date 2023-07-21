@@ -22,6 +22,7 @@ namespace GameEngines.Slots
                     PlaceStake();
                     _spinMechanic.Spin();
                     DisplayCurrentBalance();
+                    Console.WriteLine();
                 }
                 return;
             }

@@ -33,16 +33,16 @@ namespace GameEngines.Slots
             switch (randomNumber)
             {
                 case >= 0 and < 5:
-                    row.AddSymbolToRow("*");
+                    row.AddSymbolToRow(SpinSymbols.Wildcard);
                     break;
                 case >= 5 and < 20:
-                    row.AddSymbolToRow("P");
+                    row.AddSymbolToRow(SpinSymbols.Pineapple);
                     break;
                 case >= 20 and < 55:
-                    row.AddSymbolToRow("B");
+                    row.AddSymbolToRow(SpinSymbols.Banana);
                     break;
                 case >= 55 and < 100:
-                    row.AddSymbolToRow("A");
+                    row.AddSymbolToRow(SpinSymbols.Apple);
                     break;
             }
         }
@@ -51,7 +51,7 @@ namespace GameEngines.Slots
         {
             rows.ForEach(row =>
             {
-                row.Symbols.ForEach(Console.Write);
+                row.Symbols.ForEach(symbol => Console.Write(symbol.Symbol));
                 Console.WriteLine();
             });
             Console.WriteLine();

@@ -1,9 +1,11 @@
-﻿namespace GameEngines.ValueObjects
+﻿using GameEngines.Interfaces;
+
+namespace GameEngines.ValueObjects
 {
     public class SpinRow
     {
-        public List<string> Symbols = new(3);
+        public List<ISpinSymbol> Symbols = new(3);
 
-        public void AddSymbolToRow(string symbol) => Symbols.Add(symbol);
+        public void AddSymbolToRow(ISpinSymbol symbol) => Symbols.Add(symbol);
     }
 }

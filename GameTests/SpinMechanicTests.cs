@@ -19,7 +19,7 @@ namespace GameTests
             {
                 var spinRow = new SpinRow();
                 _spinMechanic.AddSymbolToGameRow(i, spinRow);
-                spinRow.Symbols.ForEach(s => Assert.Equal("*", s));
+                spinRow.Symbols.ForEach(s => Assert.Equal(SpinSymbols.Wildcard, s));
             }
         }
 
@@ -31,7 +31,7 @@ namespace GameTests
             {
                 var spinRow = new SpinRow();
                 _spinMechanic.AddSymbolToGameRow(i, spinRow);
-                spinRow.Symbols.ForEach(s => Assert.Equal("P", s));
+                spinRow.Symbols.ForEach(s => Assert.Equal(SpinSymbols.Pineapple, s));
             }
         }
 
@@ -43,7 +43,7 @@ namespace GameTests
             {
                 var spinRow = new SpinRow();
                 _spinMechanic.AddSymbolToGameRow(i, spinRow);
-                spinRow.Symbols.ForEach(s => Assert.Equal("B", s));
+                spinRow.Symbols.ForEach(s => Assert.Equal(SpinSymbols.Banana, s));
             }
         }
 
@@ -55,7 +55,7 @@ namespace GameTests
             {
                 var spinRow = new SpinRow();
                 _spinMechanic.AddSymbolToGameRow(i, spinRow);
-                spinRow.Symbols.ForEach(s => Assert.Equal("A", s));
+                spinRow.Symbols.ForEach(s => Assert.Equal(SpinSymbols.Apple, s));
             }
         }
     }
