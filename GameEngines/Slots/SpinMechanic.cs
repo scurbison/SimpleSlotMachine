@@ -12,7 +12,8 @@ namespace GameEngines.Slots
         {
             var game = new List<SpinRow>(4);
             var randomNumberGenerator = new Random();
-
+            Console.WriteLine("SPINNING!!! Good Luck!");
+            Console.WriteLine();
             for (int i = 0; i < RowsPerGame; i++)
             {
                 var row = new SpinRow();
@@ -53,6 +54,7 @@ namespace GameEngines.Slots
                 row.Symbols.ForEach(Console.Write);
                 Console.WriteLine();
             });
+            Console.WriteLine();
         }
     }
 }

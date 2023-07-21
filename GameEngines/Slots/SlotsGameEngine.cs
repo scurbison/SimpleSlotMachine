@@ -21,6 +21,7 @@ namespace GameEngines.Slots
                 {
                     PlaceStake();
                     _spinMechanic.Spin();
+                    DisplayCurrentBalance();
                 }
                 return;
             }
@@ -64,7 +65,7 @@ namespace GameEngines.Slots
             if (!ValidateAndStoreStake(stake))
             {
                 Console.WriteLine("The Steak amount you have entered is not valid.");
-                Console.WriteLine($"please enter a valid amount which is less than your current balance: {Deposit}");
+                Console.WriteLine($"please enter a valid amount which is less than your current balance: £{Deposit}");
                 PlaceStake();
             }
             Console.WriteLine();
@@ -82,5 +83,7 @@ namespace GameEngines.Slots
             Deposit -= CurrentStake;
             return true;
         }
+
+        private void DisplayCurrentBalance() => Console.WriteLine($"Your current balance is £{Deposit}");
     }
 }
