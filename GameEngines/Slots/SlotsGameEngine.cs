@@ -9,8 +9,13 @@ namespace GameEngines.Slots
         public decimal CurrentStake { get; private set; }
 
         private readonly ISpinMechanic _spinMechanic;
+        private readonly IPrizeGenerator _prizeGenerator;
 
-        public SlotsGameEngine(ISpinMechanic spinMechanic) => _spinMechanic = spinMechanic;
+        public SlotsGameEngine(ISpinMechanic spinMechanic, IPrizeGenerator prizeGenerator)
+        {
+            _spinMechanic = spinMechanic;
+            _prizeGenerator = prizeGenerator;
+        } 
 
         public void StartGame()
         {
@@ -20,7 +25,8 @@ namespace GameEngines.Slots
                 while (Deposit > 0)
                 {
                     PlaceStake();
-                    _spinMechanic.Spin();
+                    var game = _spinMechanic.Spin();
+                    var prizeAmount = _prizeGenerator.GeneratePrize(game);
                     DisplayCurrentBalance();
                     Console.WriteLine();
                 }
@@ -67,6 +73,7 @@ namespace GameEngines.Slots
             {
                 Console.WriteLine("The Steak amount you have entered is not valid.");
                 Console.WriteLine($"please enter a valid amount which is less than your current balance: £{Deposit}");
+                Console.WriteLine();
                 PlaceStake();
             }
             Console.WriteLine();

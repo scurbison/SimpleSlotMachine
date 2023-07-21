@@ -7,13 +7,15 @@ namespace GameTests
 {
     public class GameEngineTests
     {
-        private ISlotsGameEngine _gameEngine;
-        private Mock<ISpinMechanic> _mockSpinMechanic;
+        private readonly ISlotsGameEngine _gameEngine;
+        private readonly Mock<ISpinMechanic> _mockSpinMechanic;
+        private readonly Mock<IPrizeGenerator> _mockPrizeGenerator;
 
         public GameEngineTests()
         {
             _mockSpinMechanic = new Mock<ISpinMechanic>();
-            _gameEngine = new SlotsGameEngine(_mockSpinMechanic.Object);
+            _mockPrizeGenerator = new Mock<IPrizeGenerator>();
+            _gameEngine = new SlotsGameEngine(_mockSpinMechanic.Object, _mockPrizeGenerator.Object);
         }
 
         [Theory]

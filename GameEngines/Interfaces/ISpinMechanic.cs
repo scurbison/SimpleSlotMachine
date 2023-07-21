@@ -4,7 +4,7 @@ namespace GameEngines.Interfaces
 {
     public interface ISpinMechanic
     {
-        void Spin();
+        List<SpinRow> Spin();
 
         void AddSymbolToGameRow(int randomNumber, SpinRow row);
     }

@@ -13,6 +13,7 @@ static IHostBuilder CreateHostBuilder(string[] strings) =>
           {
               services.AddTransient<ISlotsGameEngine, SlotsGameEngine>();
               services.AddTransient<ISpinMechanic, SpinMechanic>();
+              services.AddTransient<IPrizeGenerator, PrizeGenerator>();
               services.AddSingleton<Game>();
           });
 

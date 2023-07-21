@@ -8,7 +8,7 @@ namespace GameEngines.Slots
         private const int RowsPerGame = 4;
         private const int ColumnsPerRow = 3;
         
-        public void Spin()
+        public List<SpinRow> Spin()
         {
             var game = new List<SpinRow>(4);
             var randomNumberGenerator = new Random();
@@ -26,6 +26,7 @@ namespace GameEngines.Slots
             }
 
             DisplaySpinResult(game);
+            return game;
         }
 
         public void AddSymbolToGameRow(int randomNumber, SpinRow row)
