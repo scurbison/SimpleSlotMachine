@@ -88,5 +88,16 @@ namespace GameTests
             var prize = _prizeGenerator.GeneratePrize(spinRows, 10);
             Assert.Equal(66, prize);
         }
+
+        [Fact]
+        private void Coefficient_Calculation_For_Wildcard_Row_Test()
+        {
+            var spinRows = new List<SpinRow> 
+            {
+                new() {Symbols = new() { SpinSymbols.Wildcard, SpinSymbols.Wildcard, SpinSymbols.Wildcard }}
+            };
+            var prize = _prizeGenerator.GeneratePrize(spinRows, 10);
+            Assert.Equal(0, prize);
+        }
     }
 }
