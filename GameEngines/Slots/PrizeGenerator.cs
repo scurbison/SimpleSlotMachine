@@ -28,16 +28,7 @@ namespace GameEngines.Slots
         public bool IsWinningRow(SpinRow row)
         {
             RemoveWildcardsFromRow(row);
-            if (row.Symbols.Count <= 1)
-                return true;
-
-            if (row.Symbols.Count == 2 && row.Symbols[0] == row.Symbols[1])
-                return true;
-
-            if (row.Symbols.Count == 3 && row.Symbols[0] == row.Symbols[1] && row.Symbols[1] == row.Symbols[2])
-                return true;
-
-            return false;
+            return row.Symbols.Count <= 1 || row.Symbols.All(s => s == row.Symbols[0]);
         }
 
         public decimal CalculateCoefficientForRow(SpinRow row)
