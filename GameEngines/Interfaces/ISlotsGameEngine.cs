@@ -2,7 +2,7 @@
 {
     public interface ISlotsGameEngine
     {
-        decimal Deposit { get; }
+        decimal Balance { get; }
         decimal CurrentStake { get; }
 
         void StartGame();

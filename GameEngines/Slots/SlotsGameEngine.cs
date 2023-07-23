@@ -5,7 +5,7 @@ namespace GameEngines.Slots
     public class SlotsGameEngine : ISlotsGameEngine
     {
         private const string AbandonGameKey = "q";
-        public decimal Deposit { get; private set; }
+        public decimal Balance { get; private set; }
         public decimal CurrentStake { get; private set; }
 
         private readonly ISpinMechanic _spinMechanic;
@@ -22,7 +22,7 @@ namespace GameEngines.Slots
             var deposit = RequestAmount();
             if (ValidateAndStoreDeposit(deposit))
             {
-                while (Deposit > 0)
+                while (Balance > 0)
                 {
                     PlaceStake();
                     var game = _spinMechanic.Spin();
@@ -62,7 +62,7 @@ namespace GameEngines.Slots
             if (!decimal.TryParse(depositEntered, out decimal validDeposit)) 
                 return false;
 
-            Deposit = Math.Round(validDeposit, 2);
+            Balance = Math.Round(validDeposit, 2);
             return true;
         }
 
@@ -73,7 +73,7 @@ namespace GameEngines.Slots
             if (!ValidateAndStoreStake(stake))
             {
                 Console.WriteLine("The Steak amount you have entered is not valid.");
-                Console.WriteLine($"please enter a valid amount which is less than your current balance: £{Deposit}");
+                Console.WriteLine($"please enter a valid amount which is less than your current balance: £{Balance}");
                 Console.WriteLine();
                 PlaceStake();
             }
@@ -85,20 +85,20 @@ namespace GameEngines.Slots
             if (!decimal.TryParse(stake, out decimal validStake))
                 return false;
 
-            if (validStake > 0 && validStake > Deposit)
+            if (validStake > 0 && validStake > Balance)
                 return false;
 
             CurrentStake = Math.Round(validStake, 2);
-            Deposit -= CurrentStake;
+            Balance -= CurrentStake;
             return true;
         }
 
         private void AddAndDisplayPrize(decimal prizeAmount)
         {
             Console.WriteLine($"You have won: £{prizeAmount}");
-            Deposit += prizeAmount;
+            Balance += prizeAmount;
         }
 
-        private void DisplayCurrentBalance() => Console.WriteLine($"Your current balance is £{Deposit}");
+        private void DisplayCurrentBalance() => Console.WriteLine($"Your current balance is £{Balance}");
     }
 }

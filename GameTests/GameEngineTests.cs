@@ -47,7 +47,7 @@ namespace GameTests
         {
             var isValid = _gameEngine.ValidateAndStoreDeposit(deposit);
             Assert.True(isValid);
-            Assert.Equal(_gameEngine.Deposit, expectedOutput);
+            Assert.Equal(_gameEngine.Balance, expectedOutput);
         }
 
         [Theory]
@@ -87,7 +87,7 @@ namespace GameTests
             _gameEngine.ValidateAndStoreDeposit("10");
             var isValid = _gameEngine.ValidateAndStoreStake("5");
             Assert.True(isValid);
-            Assert.Equal(5, _gameEngine.Deposit);
+            Assert.Equal(5, _gameEngine.Balance);
         }
     }
 }
